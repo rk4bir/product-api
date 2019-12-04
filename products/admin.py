@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Size, Color, Product
+from .models import Size, Color, Price, Product
 
 
 @admin.register(Size)
 class SizeModelAdmin(admin.ModelAdmin):
+    """Django admin functionality for Size Model"""
     list_per_page = 20
     list_display = ['id', 'title', 'description']
     list_display_links = ['title']
@@ -13,6 +14,7 @@ class SizeModelAdmin(admin.ModelAdmin):
 
 @admin.register(Color)
 class ColorModelAdmin(admin.ModelAdmin):
+    """Django admin functionality for Color Model"""
     list_per_page = 20
     list_display = ['id', 'title', 'color_code']
     list_display_links = ['title']
@@ -20,8 +22,19 @@ class ColorModelAdmin(admin.ModelAdmin):
     search_fields = ['title']
 
 
+@admin.register(Price)
+class PriceModelAdmin(admin.ModelAdmin):
+    """Django admin functionality for Price Model"""
+    list_per_page = 20
+    list_display = ['id', 'price', 'start_date', 'end_date']
+    list_display_links = ['price']
+    list_filter = ['price', 'start_date', 'end_date']
+    search_fields = ['price', 'start_date', 'end_date']
+
+
 @admin.register(Product)
 class ProductModelAdmin(admin.ModelAdmin):
+    """Django admin functionality for Product Model"""
     list_per_page = 20
     list_display = ['pid', 'title', 'slug', 'in_stock', 'stocks']
     list_display_links = ['pid', 'title', 'slug']

@@ -9,6 +9,7 @@ from .utils import generate_unique_slug, generate_unique_pid
 
 
 class Size(models.Model):
+    """Size model/table: Size model is related to Product model in Generic fashion"""
     # size name: e.g. 'M'
     title = models.CharField(max_length=6, blank=False, null=False)
     description = models.TextField()
@@ -31,6 +32,7 @@ class Size(models.Model):
 
 
 class Color(models.Model):
+    """Color model/table: Color model is related to Product model in Generic fashion"""
     # color name: e.g. 'blue'
     title = models.CharField(max_length=12, blank=False, null=False)
 
@@ -51,11 +53,12 @@ class Color(models.Model):
 
 
 class Price(models.Model):
-    price = models.PositiveIntegerField(default=0.00)
+    """Price model/table: Price model is related to Product model in Generic fashion"""
+    price = models.FloatField(default=0.0)
     start_date = models.DateField(default=None)
     end_date = models.DateField(default=None)
 
-    # Generic relation to Product table/model
+    # Generic relation to Price table/model
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="prices")
     object_id = models.CharField(max_length=30)
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -65,16 +68,20 @@ class Price(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     def __str__(self):
-        return str(self.price) + ' - ' + str(self.color_code)
+        return str(self.price) + ': ' + str(self.start_date) + ' to ' + str(self.end_date)
 
 
 class Product(models.Model):
     """ Database model for products.
         columns: id, pk, title, slug, pid, in_stock, stocks, price, created, updated
+        Product is related to Size, Color and Price table with Generic relations. So,
+        it'll simplify the relation complexity. e.g. to call all prices along with date
+        range one will use:
+            instance.prices.all()
     """
     title = models.CharField(max_length=100, blank=False, null=False)
 
-    # unique slug will be genereated automatically from title
+    # unique slug will be generated automatically from title
     slug = models.SlugField(blank=True, null=True, unique=True)
 
     # product identifier

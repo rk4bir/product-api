@@ -49,7 +49,7 @@ class SizeCreateAPIView(CreateAPIView):
             pass
 
         # log information
-        logger(level=level, reqeuest_type=self.request.method,
+        logger(level=level, request_type=self.request.method,
                url=self.request.build_absolute_uri(), status_code=201, message=message)
 
 
@@ -76,7 +76,7 @@ class ColorCreateAPIView(CreateAPIView):
             pass
 
         # log information
-        logger(level=level, reqeuest_type=self.request.method,
+        logger(level=level, request_type=self.request.method,
                url=self.request.build_absolute_uri(), status_code=201, message=message)
 
 
@@ -103,5 +103,5 @@ class PriceCreateAPIView(CreateAPIView):
             pass
 
         # log action information
-        logger(level=level, reqeuest_type=self.request.method,
+        logger(level=level, request_type=self.request.method,
                url=self.request.build_absolute_uri(), status_code=201, message=message)

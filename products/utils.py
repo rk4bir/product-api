@@ -3,6 +3,7 @@ import random
 import string
 import logging
 
+# Logger's basic configs
 logging.basicConfig(
     filename='logs.txt',
     filemode='a',
@@ -11,8 +12,9 @@ logging.basicConfig(
 )
 
 
-def logger(level='INFO', reqeuest_type=None, url=None, status_code=None, message=None):
-    message = '"%s %s [%s]" - %s' % (reqeuest_type, url, status_code, message)
+def logger(level='INFO', request_type=None, url=None, status_code=None, message=None):
+    """Takes several arguments and makes message and finally logs according to  log level."""
+    message = '"%s %s [%s]" - %s' % (request_type, url, status_code, message)
 
     if level == 'DEBUG':
         logging.debug(message)

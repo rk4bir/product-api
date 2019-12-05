@@ -11,7 +11,7 @@
 
 ## Features
 
-#### Services
+#### API end-points
 * Product list view with pagination
 * Product detail view 
 * Product size create view
@@ -20,10 +20,7 @@
 
 #### Others
 * Logging
-* PEP-8 standard
 * Unit tests
-* Documentation
-* Error handling
 
 ## Installation
 
@@ -77,13 +74,13 @@ This will prompt for username, email and password. Once the user is created.
 \
 Test the project
 ```bash
-[user@host product-api]$ python manage.py test
+(env) [user@host product-api]$ python manage.py test
 ``` 
 
 \
 Finally start the development server
 ```bash
-[user@host product-api]$ python manage.py runserver
+(env) [user@host product-api]$ python manage.py runserver
 ``` 
 
 Now visit api's home at [http://127.0.0.1:8000/products/](http://127.0.0.1:8000/products/)

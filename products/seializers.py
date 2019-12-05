@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer
-from .models import Product
+from .models import Size, Color, Price, Product
 
 
 class ProductListSerializer(HyperlinkedModelSerializer):
@@ -18,8 +18,34 @@ class ProductListSerializer(HyperlinkedModelSerializer):
 
 class ProductDetailSerializer(ModelSerializer):
     """Serializer class for product detail view"""
+    add_size = serializers.HyperlinkedIdentityField(view_name='set-size', lookup_field='slug', format='html')
+    add_color = serializers.HyperlinkedIdentityField(view_name='set-color', lookup_field='slug', format='html')
+    add_price = serializers.HyperlinkedIdentityField(view_name='set-price', lookup_field='slug', format='html')
 
     class Meta:
         model = Product
         # names, product code, slug, status, stocks
-        fields = ['title', 'pid', 'slug', 'stocks']
+        fields = ['add_size', 'add_color', 'add_price',
+                  'title', 'pid', 'slug', 'stock_status',
+                  'stocks', 'available_sizes', 'available_colors']
+
+
+class SizeCreateSerializer(ModelSerializer):
+    """Serializer class to create a Size instance and add it to its product=>contenttype"""
+    class Meta:
+        model = Size
+        fields = ['title', 'description']
+
+
+class ColorCreateSerializer(ModelSerializer):
+    """Serializer class to create a Color instance and add it to its product=>contenttype"""
+    class Meta:
+        model = Color
+        fields = ['title', 'color_code']
+
+
+class PriceCreateSerializer(ModelSerializer):
+    """Serializer class to create a Price instance and add it to its product=>contenttype"""
+    class Meta:
+        model = Price
+        fields = ['price', 'start_date', 'end_date']

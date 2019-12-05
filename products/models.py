@@ -54,9 +54,9 @@ class Color(models.Model):
 
 class Price(models.Model):
     """Price model/table: Price model is related to Product model in Generic fashion"""
-    price = models.FloatField(default=0.0)
-    start_date = models.DateField(default=None)
-    end_date = models.DateField(default=None)
+    price = models.FloatField(blank=False, null=False)
+    start_date = models.DateField(blank=False, null=False)
+    end_date = models.DateField(blank=False, null=False)
 
     # Generic relation to Price table/model
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="prices")
@@ -93,7 +93,7 @@ class Product(models.Model):
     prices = GenericRelation(Price)
 
     # stock, count & price
-    in_stock = models.BooleanField(default=True)
+    in_stock = models.BooleanField(default=False)
     stocks = models.PositiveIntegerField(default=0)
 
     # creation & updated timestamp
@@ -110,7 +110,25 @@ class Product(models.Model):
     # property: stock status => available or not available
     @property
     def stock_status(self):
+        """Validate availability of the product"""
+        if self.stocks > 0:
+            self.in_stock = True
+        else:
+            self.in_stock = False
+        self.save()
         return 'Available' if self.in_stock else 'Not available'
+
+    # property: comma separated sizes
+    @property
+    def available_sizes(self):
+        sizes = self.sizes.all()
+        return ', '.join(size.title for size in sizes)
+
+    # property: comma separated colors
+    @property
+    def available_colors(self):
+        colors = self.colors.all()
+        return ', '.join(color.title for color in colors)
 
 
 # Product after save action: set slug and pid

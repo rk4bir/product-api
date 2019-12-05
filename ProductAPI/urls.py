@@ -10,14 +10,14 @@ urlpatterns = [
     # products list
     path('products/', ProductAPIView.as_view(), name='product-list'),
 
-    # attributes size create view
-    path('products/set-size/', SizeCreateAPIView.as_view(), name='set-size'),
+    # attribute -> size create view
+    path('products/<slug:slug>/size/', SizeCreateAPIView.as_view(), name='set-size'),
 
-    # attributes color create view
-    path('products/set-color/', ColorCreateAPIView.as_view(), name='set-color'),
+    # attribute -> color create view
+    path('products/<slug:slug>/color/', ColorCreateAPIView.as_view(), name='set-color'),
 
-    # attributes price create view
-    path('products/set-price/', PriceCreateAPIView.as_view(), name='set-price'),
+    # attribute -> price create view
+    path('products/<slug:slug>/price/', PriceCreateAPIView.as_view(), name='set-price'),
 
     # product detail
     path('products/<slug:slug>', ProductDetailAPIView.as_view(), name='product-detail'),

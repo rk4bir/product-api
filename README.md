@@ -5,11 +5,16 @@ A simple CRUD product API with Python + Django + DRF
 ## Installation
 
 ### Create virtualenv
-> The project was developed with linux (fedora 31) system. I've used **Python v3.7.5** and **sqlite3 v3.30.0**.
+> The project was developed with **linux** (fedora 31), **Python v3.7.5** and **sqlite3 v3.30.0**.
 
 First of all clone the project to your local machine
 ```bash
 [user@machine ~]$ git clone https://github.com/rk4bir/product-api.git
+```
+
+Install virtualenv for pip3
+```bash
+[user@machine ~]$ pip3 install virtualenv
 ```
 
 Goto product-api directory
@@ -42,9 +47,15 @@ given `products.sqlite3` database then the credentials are -
 * username: admin
 * password: admin123
 ```bash
-(env) [user@machine product-api]$ python manage.py createsuperuser --username admin
+(env) [user@machine product-api]$ python manage.py createsuperuser
 ```
-This will prompt for email and password. Once the user is created. 
+This will prompt for username, email and password. Once the user is created. 
+
+\
+Test the project
+```bash
+[user@host product-api]$ python manage.py test
+``` 
 
 \
 Finally start the development server
@@ -52,5 +63,6 @@ Finally start the development server
 [user@host product-api]$ python manage.py runserver
 ``` 
 
-Now goto: [Dev server](http://127.0.0.1:8000/products/)\
-To insert product data visit [Admin panel](http://127.0.0.1:8000/admin/)
+Now visit api's home at [http://127.0.0.1:8000/products/](http://127.0.0.1:8000/products/)
+
+To insert data visit [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)

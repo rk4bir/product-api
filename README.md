@@ -1,6 +1,7 @@
 # PRODUCT-API
 > A simple restful product api
 
+
 ## Technologies
 * Linux
 * Python
@@ -8,6 +9,11 @@
 * Django Rest Framework
 * Virtualenv
 * SQLite3
+
+
+## Project tree
+![project-tree](project-tree.png)
+
 
 ## Features
 
@@ -22,7 +28,9 @@
 * Logging
 * Unit tests
 
+
 ## Installation
+
 
 ### Create virtualenv
 > The project was developed with **linux** (fedora 31), **Python v3.7.5** and **sqlite3 v3.30.0**.
@@ -86,3 +94,4 @@ Finally start the development server
 Now visit api's home at [http://127.0.0.1:8000/products/](http://127.0.0.1:8000/products/)
 
 To insert data visit [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+

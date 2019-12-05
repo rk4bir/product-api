@@ -43,7 +43,7 @@ Sync the database
 ``` 
 
 To add data to the database create a superuser, if you use 
-given `products.sqlite3` database then the credentials are -
+given **products.sqlite3** database then the credentials are -
 * username: admin
 * password: admin123
 ```bash

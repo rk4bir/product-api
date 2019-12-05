@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from .models import Size, Color, Price, Product
-from .seializers import (
+from .serializers import (
     ProductListSerializer, ProductDetailSerializer,
     SizeCreateSerializer, ColorCreateSerializer, PriceCreateSerializer
 )

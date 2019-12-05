@@ -20,7 +20,7 @@ urlpatterns = [
     path('products/<slug:slug>/price/', PriceCreateAPIView.as_view(), name='set-price'),
 
     # product detail
-    path('products/<slug:slug>', ProductDetailAPIView.as_view(), name='product-detail'),
+    path('products/<slug:slug>/', ProductDetailAPIView.as_view(), name='product-detail'),
 
     # Django admin
     path('admin/', admin.site.urls),

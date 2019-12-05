@@ -1,6 +1,29 @@
-# product-api
-A simple CRUD product API with Python + Django + DRF
+# PRODUCT-API
+> A simple restful product api
 
+## Technologies
+* Linux
+* Python
+* Django
+* Django Rest Framework
+* Virtualenv
+* SQLite3
+
+## Features
+
+#### Services
+* Product list view with pagination
+* Product detail view 
+* Product size create view
+* Product color create view
+* Product price create view
+
+#### Others
+* Logging
+* PEP-8 standard
+* Unit tests
+* Documentation
+* Error handling
 
 ## Installation
 

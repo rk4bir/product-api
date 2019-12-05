@@ -130,6 +130,12 @@ class Product(models.Model):
         colors = self.colors.all()
         return ', '.join(color.title for color in colors)
 
+    # property: prices list
+    def price_ranges(self):
+        prices = self.prices.all()
+        return [{'price': price.price, 'start_date': price.start_date, 'end_date': price.end_date}
+                    for price in prices]
+
 
 # Product after save action: set slug and pid
 def product_pre_save_action(sender, instance, *args, **kwargs):
@@ -137,11 +143,11 @@ def product_pre_save_action(sender, instance, *args, **kwargs):
         This function automatically executes when a instance.save()
         is called.
     """
-    # set slug
+    # set slug if note provided
     if not instance.slug:
         instance.slug = generate_unique_slug(instance)
 
-    # set pid
+    # set pid if not provided
     if not instance.pid:
         instance.pid = generate_unique_pid(instance)
 

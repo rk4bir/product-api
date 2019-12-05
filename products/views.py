@@ -4,6 +4,7 @@ from .serializers import (
     ProductListSerializer, ProductDetailSerializer,
     SizeCreateSerializer, ColorCreateSerializer, PriceCreateSerializer
 )
+from .utils import logger
 
 
 class ProductAPIView(ListAPIView):
@@ -37,8 +38,19 @@ class SizeCreateAPIView(CreateAPIView):
         """Grabs slug from kwargs, retrieve respective Product instance and
             links it to the Serializer Model i.e. Size instance.
         """
-        product = Product.objects.get(slug=self.kwargs.get('slug'))
-        serializer.save(content_object=product)
+        try:
+            product = Product.objects.get(slug=self.kwargs.get('slug'))
+            serializer.save(content_object=product)
+            message = "New size was added to " + product.title + '.'
+            level = 'INFO'
+        except Exception as err:
+            message = "Couldn't save size: " + str(err)
+            level = 'ERROR'
+            pass
+
+        # log information
+        logger(level=level, reqeuest_type=self.request.method,
+               url=self.request.build_absolute_uri(), status_code=201, message=message)
 
 
 class ColorCreateAPIView(CreateAPIView):
@@ -53,8 +65,19 @@ class ColorCreateAPIView(CreateAPIView):
         """Grabs slug from kwargs, retrieve respective Product instance and
             links it to the Serializer Model i.e. Color instance.
         """
-        product = Product.objects.get(slug=self.kwargs.get('slug'))
-        serializer.save(content_object=product)
+        try:
+            product = Product.objects.get(slug=self.kwargs.get('slug'))
+            serializer.save(content_object=product)
+            message = "New color was added to " + product.title + '.'
+            level = 'INFO'
+        except Exception as err:
+            message = "Couldn't save color: " + str(err)
+            level = 'ERROR'
+            pass
+
+        # log information
+        logger(level=level, reqeuest_type=self.request.method,
+               url=self.request.build_absolute_uri(), status_code=201, message=message)
 
 
 class PriceCreateAPIView(CreateAPIView):
@@ -69,5 +92,16 @@ class PriceCreateAPIView(CreateAPIView):
         """Grabs slug from kwargs, retrieve respective Product instance and
             links it to the Serializer Model i.e. Price instance.
         """
-        product = Product.objects.get(slug=self.kwargs.get('slug'))
-        serializer.save(content_object=product)
+        try:
+            product = Product.objects.get(slug=self.kwargs.get('slug'))
+            serializer.save(content_object=product)
+            message = "New price was added to " + product.title + '.'
+            level = 'INFO'
+        except Exception as err:
+            message = "Couldn't save price: " + str(err)
+            level = 'ERROR'
+            pass
+
+        # log action information
+        logger(level=level, reqeuest_type=self.request.method,
+               url=self.request.build_absolute_uri(), status_code=201, message=message)

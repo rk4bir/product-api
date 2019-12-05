@@ -1,6 +1,30 @@
 from django.utils.text import slugify
 import random
 import string
+import logging
+
+logging.basicConfig(
+    filename='logs.txt',
+    filemode='a',
+    format='%(asctime)s - pid[%(process)d] - [%(levelname)s] - %(message)s',
+    level=logging.INFO
+)
+
+
+def logger(level='INFO', reqeuest_type=None, url=None, status_code=None, message=None):
+    message = '"%s %s [%s]" - %s' % (reqeuest_type, url, status_code, message)
+
+    if level == 'DEBUG':
+        logging.debug(message)
+
+    if level == 'ERROR':
+        logging.error(message)
+
+    if level == 'WARNING':
+        logging.warning(message)
+
+    if level == 'INFO':
+        logging.info(message)
 
 
 def generate_unique_pid(instance, size=6):

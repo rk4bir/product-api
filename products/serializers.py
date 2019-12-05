@@ -26,8 +26,8 @@ class ProductDetailSerializer(ModelSerializer):
         model = Product
         # names, product code, slug, status, stocks
         fields = ['add_size', 'add_color', 'add_price',
-                  'title', 'pid', 'slug', 'stock_status',
-                  'stocks', 'available_sizes', 'available_colors']
+                  'title', 'pid', 'slug', 'stock_status', 'stocks',
+                  'price_ranges', 'available_sizes', 'available_colors']
 
 
 class SizeCreateSerializer(ModelSerializer):
